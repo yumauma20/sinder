@@ -7,6 +7,7 @@ use Intervention\Image\Facades\Image;
 use App\User;
 use App\Services\CheckExtensionServices;
 use App\Services\FileUploadServices;
+use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
 {
@@ -37,7 +38,7 @@ class UserController extends Controller
     /**
      * プロフィール更新機能
      */
-    public function update(Request $request, int $id)
+    public function update(int $id, ProfileRequest $request)
     {
 
         $user = User::findorFail($id);
