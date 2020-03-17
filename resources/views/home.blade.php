@@ -15,7 +15,7 @@
         @foreach($users as $user)
         <li data-user_id="{{ $user->id }}">
           <div class="userName">{{ $user->name }}</div>
-          <img src="/storage/images/{{ $user->img_name}}">
+          <img src="/storage/images/{{ $user->img_name }}">
           <div class="like"></div>
           <div class="dislike"></div>
         </li>
@@ -28,5 +28,11 @@
       <a href="#" class="like"><i class="fas fa-heart fa-2x"></i></a>
   </div>
 </div>
+
+<script>
+    var usersNum = {{ $userCount }};
+    var from_user_id = {{ $from_user_id }};
+</script>
+
 
 @endsection
