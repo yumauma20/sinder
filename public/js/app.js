@@ -59419,7 +59419,7 @@ __webpack_require__(/*! ./jquery.transform2d */ "./resources/js/jquery.transform
 
 __webpack_require__(/*! ./jTinder */ "./resources/js/jTinder.js");
 
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './chat'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(/*! ./chat */ "./resources/js/chat.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -59487,9 +59487,54 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "dc2d085f79def5afab27",
+  cluster: "ap3",
   encrypted: true
+});
+
+/***/ }),
+
+/***/ "./resources/js/chat.js":
+/*!******************************!*\
+  !*** ./resources/js/chat.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $('.messageInputForm_input').keypress(function (event) {
+    if (event.which === 13) {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: '/chat/chat',
+        data: {
+          chat_room_id: chat_room_id,
+          user_id: user_id,
+          message: $('.messageInputForm_input').val()
+        }
+      }).done(function (data) {
+        //console.log(data);
+        event.target.value = '';
+      });
+    }
+  });
+  window.Echo.channel('ChatRoomChannel').listen('ChatPusher', function (e) {
+    console.log(e, e.message.user_id);
+
+    if (e.message.user_id === user_id) {
+      console.log(true);
+      $('.messages').append('<div class="message"><span>' + current_user_name + ':</span><div class="commonMessage"><div>' + e.message.message + '</div></div></div>');
+    } else {
+      console.log(false);
+      $('.messages').append('<div class="message"><span>' + chat_room_user_name + ':</span><div class="commonMessage"><div>' + e.message.message + '</div></div></div>');
+    }
+  });
 });
 
 /***/ }),
@@ -60356,7 +60401,7 @@ $(document).on("change", "#file_photo", function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\n\n@import \"~@fortawesome/fontawesome-free/scss/fontawesome\";\n       ^\n      Can't find stylesheet to import.\n   ╷\n21 │ @import \"~@fortawesome/fontawesome-free/scss/fontawesome\";\n   │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   ╵\n  stdin 21:9  root stylesheet\n      in /Users/masana/projects/sinder/resources/sass/app.scss (line 21, column 9)\n    at /Users/masana/projects/sinder/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/masana/projects/sinder/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/masana/projects/sinder/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/Users/masana/projects/sinder/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at /Users/masana/projects/sinder/node_modules/sass-loader/dist/index.js:89:7\n    at Function.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:87203:16)\n    at _render_closure1.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:76994:12)\n    at _RootZone.runBinary$3$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25521:18)\n    at _RootZone.runBinary$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25525:19)\n    at _FutureListener.handleError$1 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23975:19)\n    at _Future__propagateToListeners_handleError.call$0 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:24271:40)\n    at Object._Future__propagateToListeners (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3500:88)\n    at _Future._completeError$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:24099:9)\n    at _AsyncAwaitCompleter.completeError$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23491:12)\n    at Object._asyncRethrow (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3256:17)\n    at /Users/masana/projects/sinder/node_modules/sass/sass.dart.js:13326:20\n    at _wrapJsFunctionForAsync_closure.$protected (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23512:12)\n    at _awaitOnObject_closure0.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23504:25)\n    at _RootZone.runBinary$3$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25521:18)\n    at _RootZone.runBinary$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25525:19)\n    at _FutureListener.handleError$1 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23975:19)\n    at _Future__propagateToListeners_handleError.call$0 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:24271:40)\n    at Object._Future__propagateToListeners (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3500:88)\n    at _Future._completeError$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:24099:9)\n    at _AsyncAwaitCompleter.completeError$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23491:12)\n    at Object._asyncRethrow (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3256:17)\n    at /Users/masana/projects/sinder/node_modules/sass/sass.dart.js:15981:20\n    at _wrapJsFunctionForAsync_closure.$protected (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23512:12)\n    at _awaitOnObject_closure0.call$2 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23504:25)\n    at _RootZone.runBinary$3$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25521:18)\n    at _RootZone.runBinary$3 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:25525:19)\n    at _FutureListener.handleError$1 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:23975:19)\n    at _Future__propagateToListeners_handleError.call$0 (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:24271:40)\n    at Object._Future__propagateToListeners (/Users/masana/projects/sinder/node_modules/sass/sass.dart.js:3500:88)");
 
 /***/ }),
 
