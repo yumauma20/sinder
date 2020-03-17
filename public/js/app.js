@@ -59419,6 +59419,8 @@ __webpack_require__(/*! ./jquery.transform2d */ "./resources/js/jquery.transform
 
 __webpack_require__(/*! ./jTinder */ "./resources/js/jTinder.js");
 
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './chat'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your

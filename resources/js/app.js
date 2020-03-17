@@ -14,6 +14,8 @@ require('./jquery.transform2d');
 
 require('./jTinder');
 
+require('./chat');
+
 window.Vue = require('vue');
 
 /**
